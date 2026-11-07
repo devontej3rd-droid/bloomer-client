@@ -23,5 +23,5 @@ public abstract class ClientModule {
 
     protected void onEnable() { }
     protected void onDisable() { }
-    public void onHudRender(DrawContext context, float tickDelta) { }
+    public void onHudRender(DrawContext context) { }
 }
