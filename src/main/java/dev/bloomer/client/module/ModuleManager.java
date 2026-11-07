@@ -17,7 +17,7 @@ public final class ModuleManager {
 
         MODULES.add(new ClientModule("HUD Test") {
             @Override
-            public void onHudRender(net.minecraft.client.gui.DrawContext context, float tickDelta) {
+            public void onHudRender(net.minecraft.client.gui.DrawContext context) {
                 if (isEnabled()) {
                     var client = net.minecraft.client.MinecraftClient.getInstance();
                     context.drawText(client.textRenderer,
@@ -27,7 +27,7 @@ public final class ModuleManager {
         });
 
         HudRenderCallback.EVENT.register((drawContext, tickDelta) ->
-                MODULES.forEach(module -> module.onHudRender(drawContext, tickDelta)));
+                MODULES.forEach(module -> module.onHudRender(drawContext)));
     }
 
     public static List<ClientModule> getModules() {
