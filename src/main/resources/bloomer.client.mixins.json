@@ -1,0 +1,11 @@
+{
+  "required": true,
+  "package": "dev.bloomer.client.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "client": [
+    "GameRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
