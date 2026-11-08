@@ -11,6 +11,7 @@ import net.fabricmc.fabric.api.client.rendering.v1.HudRenderCallback;
 public final class ModuleManager {
     private static final List<ClientModule> MODULES = new ArrayList<>();
     private static boolean registered;
+    private static ZoomModule zoomModule;
 
     private ModuleManager() { }
 
@@ -19,13 +20,16 @@ public final class ModuleManager {
         registered = true;
 
         MODULES.add(new FullbrightModule());
-        MODULES.add(new ZoomModule());
+        zoomModule = new ZoomModule();
+        MODULES.add(zoomModule);
 
         ClientTickEvents.END_CLIENT_TICK.register(client ->
                 MODULES.forEach(module -> module.onTick(client)));
         HudRenderCallback.EVENT.register((drawContext, tickDelta) ->
                 MODULES.forEach(module -> module.onHudRender(drawContext)));
     }
+
+    public static ZoomModule getZoomModule() { return zoomModule; }
 
     public static List<ClientModule> getModules() {
         return Collections.unmodifiableList(MODULES);
